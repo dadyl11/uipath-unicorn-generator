@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unicorn Name Generator | UiPath Practice Lab</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#24304a;background:#f8f5ff}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 10%,#fce8f8 0,transparent 35%),radial-gradient(circle at 90% 10%,#e1edff 0,transparent 33%),#faf8ff}.wrap{max-width:940px;margin:auto;padding:32px 20px 64px}header{text-align:center;margin:14px auto 28px}.eyebrow{color:#7951af;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.emoji{font-size:56px;margin:12px}h1{margin:6px 0;font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px}header p{color:#64718c;line-height:1.6}.card{background:white;border:1px solid #ece6fa;border-radius:22px;box-shadow:0 18px 55px #58488613;padding:30px;max-width:650px;margin:0 auto}.card h2{font-size:20px;margin:0 0 20px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}input,select{border:1px solid #c9c9df;border-radius:10px;padding:12px 13px;font-size:16px;width:100%;background:#fff;color:#24304a}input:focus,select:focus{outline:3px solid #e4d7ff;border-color:#9765df}.field{margin-bottom:20px}.hint{font-size:12px;color:#76819c;margin:7px 0 0}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.button{border:0;border-radius:11px;padding:13px 22px;font-size:15px;font-weight:750;cursor:pointer}.primary{background:linear-gradient(125deg,#8054da,#b361db);color:white;box-shadow:0 5px 15px #a87ce355}.secondary{background:#f2effb;color:#64428e}.button:focus-visible{outline:3px solid #6342d5;outline-offset:3px}.error{color:#b82c52;margin:8px 0 0;font-size:13px;min-height:18px}#resultSection{margin-top:26px;text-align:center;background:linear-gradient(125deg,#f7f0ff,#fff1f7);border:1px solid #e3cef5;border-radius:16px;padding:25px;display:none}#resultSection.visible{display:block}.result-label{color:#7c5b9b;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px}#unicornName{font-size:clamp(25px,4vw,37px);font-weight:850;color:#6b3db3;margin:12px 0 8px;overflow-wrap:anywhere}#resultDescription{color:#716b8b;margin:0}.levels{max-width:650px;margin:26px auto 0}.levels h2{font-size:18px;margin:0 0 12px}.level{background:#ffffffbc;border:1px solid #eee5f6;border-radius:12px;margin:10px 0;padding:14px 17px}.level summary{font-weight:760;cursor:pointer}.level p,.level li{color:#5c6983;line-height:1.6;font-size:14px}.level ol{padding-left:20px}.footer{text-align:center;color:#8990a4;font-size:12px;margin:30px auto}.pill{background:#f1e9ff;color:#7044af;font-size:11px;padding:5px 9px;border-radius:99px;font-weight:700}.inline{display:flex;align-items:center;gap:10px} @media(max-width:520px){.form-row{grid-template-columns:1fr;gap:0}.card{padding:23px 18px}.wrap{padding:18px 12px 40px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header><div class="eyebrow">UiPath UI Automation Practice</div><div class="emoji" aria-hidden="true">🦄</div><h1>Unicorn Name Generator</h1><p>Enter your first name and birth month to reveal your magical unicorn identity.<br>Perfect for practicing <strong>Type Into → Select Item → Click → Get Text</strong>.</p></header>
+<section class="card" aria-labelledby="formTitle">
+ <div class="inline"><h2 id="formTitle">Discover your unicorn name</h2><span class="pill">Offline ready</span></div>
+ <form id="nameForm" novalidate>
+  <div class="form-row">
+   <div class="field"><label for="firstName">Your first name</label><input id="firstName" name="firstName" type="text" placeholder="e.g. Anna" autocomplete="off" maxlength="40" required><p class="hint">Try your own name or a test value.</p></div>
+   <div class="field"><label for="birthMonth">Birth month</label><select id="birthMonth" name="birthMonth" required><option value="">Choose a month…</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+  </div>
+  <div class="actions"><button class="button primary" id="generateButton" type="submit">✨ Generate unicorn name</button><button class="button secondary" type="button" id="resetButton">Reset</button></div>
+  <p class="error" id="validationMessage" role="alert" aria-live="polite"></p>
+ </form>
+ <section id="resultSection" aria-live="polite" aria-labelledby="resultLabel"><div id="resultLabel" class="result-label">Your magical unicorn name</div><div id="unicornName" data-testid="unicorn-result"></div><p id="resultDescription"></p></section>
+</section>
+<section class="levels" aria-label="UiPath student exercises"><h2>🎓 Student practice tasks</h2>
+ <details class="level"><summary>Level 1 — Basics: input, click and read</summary><ol><li>Open this page using <strong>Use Application/Browser</strong>.</li><li>Enter a first name using <strong>Type Into</strong>.</li><li>Choose a birth month using <strong>Select Item</strong> (or Click).</li><li>Click <strong>Generate unicorn name</strong>.</li><li>Read <strong>unicornName</strong> using <strong>Get Text</strong> and show the value in a <strong>Message Box</strong>.</li></ol></details>
+ <details class="level"><summary>Level 2 — Validation and Check App State</summary><ol><li>Click Generate with the name field empty and observe the message.</li><li>Handle the warning with <strong>Check App State</strong>.</li><li>Fill valid data and use <strong>Check App State</strong> to verify that the result appeared.</li><li>Use Reset and verify that the result disappears.</li></ol></details>
+ <details class="level"><summary>Level 3 — For Each and Excel</summary><ol><li>Create a list of 5 first names and birth months.</li><li>Loop through the list, populate the form, generate and read each result.</li><li>Collect original names, months and generated results in a DataTable.</li><li>Write the DataTable into an Excel file.</li></ol></details>
+</section><div class="footer">Educational demo • Runs locally • No external dependencies • No data is transmitted</div>
+</main>
+<script>
+(function(){
+  'use strict';
+  const form=document.getElementById('nameForm');
+  const first=document.getElementById('firstName');
+  const month=document.getElementById('birthMonth');
+  const message=document.getElementById('validationMessage');
+  const result=document.getElementById('resultSection');
+  const output=document.getElementById('unicornName');
+  const desc=document.getElementById('resultDescription');
+  const prefixes=['Moonbeam','Stardust','Rainbow','Crystal','Sparkle','Silver','Golden','Velvet','Twinkle','Sunshine','Mystic','Dream'];
+  const suffixes=['Whisper','Dancer','Glitter','Hooves','Wish','Blossom','Shimmer','Heart','Song','Light','Charm','Cloud'];
+  // Deterministic output ensures that automation tests give repeatable results.
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    const name=first.value.trim();const m=Number(month.value);
+    if(!name){message.textContent='Please enter your first name.';result.classList.remove('visible');first.focus();return;}
+    if(!m||m<1||m>12){message.textContent='Please choose your birth month.';result.classList.remove('visible');month.focus();return;}
+    message.textContent='';
+    const cleaned=name.replace(/[^\p{L}]/gu,'').toLowerCase();
+    let sum=0;for(const character of cleaned){sum+=character.codePointAt(0);}
+    const prefix=prefixes[(m-1)%prefixes.length];
+    const suffix=suffixes[sum%suffixes.length];
+    output.textContent=prefix+' '+suffix;
+    desc.textContent='Hello '+name+'! Your unicorn magic is ready. ✨';
+    result.classList.add('visible');
+  });
+  document.getElementById('resetButton').addEventListener('click',function(){form.reset();message.textContent='';result.classList.remove('visible');output.textContent='';desc.textContent='';first.focus();});
+})();
+</script>
+</body></html>
